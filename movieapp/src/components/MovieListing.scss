@@ -1,16 +1,18 @@
 @import "../common/colors.scss";
 
 .movie-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  margin: 20px 0;
+  h2 {
+    color: $font-secondary;
+    font-weight: 400;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    text-align: center;
+  }
 }
 .movie-container {
-  display: flex;
-  width: 100%;
-  padding: 50px;
-  flex-wrap: wrap;
-  gap: 10px;
-  border: blue;
+  margin: 10px 50px;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
 }
