@@ -1,0 +1,16 @@
+@import "../common/colors.scss";
+
+.movie-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.movie-container {
+  display: flex;
+  width: 100%;
+  padding: 50px;
+  flex-wrap: wrap;
+  gap: 10px;
+  border: blue;
+}
