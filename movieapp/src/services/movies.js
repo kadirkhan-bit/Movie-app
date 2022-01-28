@@ -3,16 +3,17 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import movieApi from "../common/movieApi";
 import { APIkey } from "../common/movieApiKey";
 
-export const fetchMovies = createAsyncThunk("fetchMovies", async () => {
-  const movieText = "Harry";
-  const response = await movieApi.get(
-    `?apiKey=${APIkey}&s=${movieText}&type=movie`
-  );
-  return response.data;
-});
+export const fetchMovies = createAsyncThunk(
+  "fetchMovies",
+  async (movieText) => {
+    const response = await movieApi.get(
+      `?apiKey=${APIkey}&s=${movieText}&type=movie`
+    );
+    return response.data;
+  }
+);
 
-export const fetchShows = createAsyncThunk("fetchShows", async () => {
-  const seriesText = "Friends";
+export const fetchShows = createAsyncThunk("fetchShows", async (seriesText) => {
   const response = await movieApi.get(
     `?apiKey=${APIkey}&s=${seriesText}&type=series`
   );
@@ -32,6 +33,7 @@ export const movieSlice = createSlice({
     movies: {},
     shows: {},
     details: {},
+    loading: true,
   },
   reducers: {
     addMovies: (state, { payload }) => {
@@ -39,23 +41,33 @@ export const movieSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchMovies.pending]: () => {
+    [fetchMovies.pending]: (state) => {
       console.log("pending");
+      return { ...state, loading: true };
     },
     [fetchMovies.fulfilled]: (state, { payload }) => {
       console.log("fetched");
-      return { ...state, movies: payload };
+      return { ...state, movies: payload, loading: false };
     },
-    [fetchMovies.rejected]: () => {
+    [fetchMovies.rejected]: (state) => {
       console.log("rejected");
+      return { ...state, loading: true };
+    },
+    [fetchShows.pending]: (state, { payload }) => {
+      console.log("pending");
+      return { ...state, loading: true };
+    },
+    [fetchDetails.pending]: (state, { payload }) => {
+      console.log("pending");
+      return { ...state, loading: true };
     },
     [fetchShows.fulfilled]: (state, { payload }) => {
       console.log("fetched");
-      return { ...state, shows: payload };
+      return { ...state, shows: payload, loading: false };
     },
     [fetchDetails.fulfilled]: (state, { payload }) => {
       console.log("fetched");
-      return { ...state, details: payload };
+      return { ...state, details: payload, loading: false };
     },
   },
 });

@@ -8,6 +8,26 @@
   h1 {
     color: $font-primary;
     margin: 10px 0;
+    font-size: 2.5rem;
+  }
+
+  .plot {
+    color: $font-primary;
+  }
+
+  .info {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+    margin: 20px 0;
+    gap: 20px;
+  }
+
+  .details {
+    color: $font-primary;
+  }
+
+  .details-value {
+    color: $font-secondary;
   }
 
   @media screen and (max-width: 600px) {

@@ -1,16 +1,20 @@
 import { React, useEffect } from "react";
 import MovieListing from "./MovieListing";
 
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchMovies, fetchShows } from "../services/movies";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Home = () => {
   const dispatch = useDispatch();
+  const loading = useSelector((state) => state.Movie.loading);
 
   useEffect(() => {
-    dispatch(fetchMovies());
-    dispatch(fetchShows());
+    // dispatch(fetchMovies());
+    // dispatch(fetchShows());
   }, []);
+
+  if (loading) return <LoadingSpinner />;
 
   return (
     <>
