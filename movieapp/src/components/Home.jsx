@@ -2,13 +2,14 @@ import { React, useEffect } from "react";
 import MovieListing from "./MovieListing";
 
 import { useDispatch } from "react-redux";
-import { addMovies, fetchMovies } from "../services/movies";
+import { fetchMovies, fetchShows } from "../services/movies";
 
 const Home = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchMovies());
+    dispatch(fetchShows());
   }, []);
 
   return (
