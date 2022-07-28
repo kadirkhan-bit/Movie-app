@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { fetchMovies, fetchShows } from "../services/movies";
 
 const Header = () => {
-  const [searchText, setSearchText] = useState("Harry");
+  const [searchText, setSearchText] = useState("");
   const dispatch = useDispatch();
   const text = useRef();
 

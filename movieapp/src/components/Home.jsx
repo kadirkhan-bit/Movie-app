@@ -9,11 +9,6 @@ const Home = () => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.Movie.loading);
 
-  useEffect(() => {
-    // dispatch(fetchMovies());
-    // dispatch(fetchShows());
-  }, []);
-
   if (loading) return <LoadingSpinner />;
 
   return (
